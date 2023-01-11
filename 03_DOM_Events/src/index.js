@@ -29,19 +29,19 @@ function renderFooter(bookStore) {
 // </li>
 // appends the li to the ul#book-list in the DOM
 function renderBook(book) {
-    
+
   const li = document.createElement('li');
   li.className = 'list-li';
-  
+
   const h3 = document.createElement('h3');
   h3.textContent = book.title;
 
   const pAuthor = document.createElement('p');
   pAuthor.textContent = book.author;
-  
+
   const pPrice = document.createElement('p');
   pPrice.textContent = formatPrice(book.price);
-  
+
   const img = document.createElement('img');
   img.src = book.imageUrl;
   img.alt = `${book.title} cover`;
@@ -62,4 +62,18 @@ function renderBook(book) {
 renderHeader(bookStore);
 renderFooter(bookStore);
 bookStore.inventory.forEach(renderBook);
+
+const newBookButton = document.querySelector('#toggleForm')
+newBookButton.addEventListener('click' , (event) => {
+  const form = document.querySelector('#book-form')
+  if (form.className === 'collapsed') {
+    form.classList.remove("collapsed")
+    //select button and change text
+    newBookButton.textContent = 'Collapse Form'
+  } else {
+    form.classList.add("collapsed")
+    //select button and change text
+    newBookButton.textContent = 'New Book'
+  }
+})
 
